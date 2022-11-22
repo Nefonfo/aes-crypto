@@ -7,13 +7,13 @@ export const Mockup = ({
                            loadingText,
                            resultText,
                            data,
-                           pristine,
+                           loading,
                            resolved}) => {
     return (
         <div className="w-full mockup-code mt-6">
             <pre data-prefix="$"><code className='break-all'>{`aes ${command}${word ? ' -w '+word: ''}${secret ? ' -k '+secret: ''}`}</code></pre>
             {
-                !pristine && <pre data-prefix=">" className="text-warning"><code>{loadingText}</code></pre>
+                loading && <pre data-prefix=">" className="text-warning"><code>{loadingText}</code></pre>
             }
             {
                 resolved && (
@@ -36,6 +36,6 @@ Mockup.propTypes = {
     loadingText: PropTypes.string.isRequired,
     resultText: PropTypes.string.isRequired,
     data: PropTypes.string.isRequired,
-    pristine: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired,
     resolved: PropTypes.bool.isRequired
 }

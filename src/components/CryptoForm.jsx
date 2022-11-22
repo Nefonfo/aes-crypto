@@ -19,8 +19,8 @@ export const CryptoForm = ({
     const [input2, setInput2] = useState('')
 
     const [result, setResult] = useState({
-        pristine: true,
         resolved: false,
+        loading: false,
         data: ''
     })
 
@@ -35,11 +35,12 @@ export const CryptoForm = ({
         setError('')
         const validation = validate()
         if(!validation){
-            setResult({...result, pristine: false, resolved: false})
+            setResult({...result, resolved: false, loading: true})
             return new Promise((resolve) => {
                 setTimeout(() => setResult({
                     ...result,
                     resolved: true,
+                    loading: false,
                     data: handleSubmit(input1, input2)
                 }), 3000)
             })
@@ -71,7 +72,17 @@ export const CryptoForm = ({
                         <input value={input2} onChange={(e) => setInput2(e.target.value)} type="text" placeholder="Type here" className="input input-bordered input-lg w-full"/>
                     </div>
                 </div>
-                <button className='btn btn-lg w-full' onClick={resolve}>ENCODE</button>
+                <button disabled={result.loading} className='btn btn-lg w-full' onClick={resolve}>
+                    {
+                        result.loading && (
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        )
+                    }
+                    EXECUTE
+                </button>
                 <Mockup
                     command={bashText}
                     word={input1}
@@ -79,7 +90,7 @@ export const CryptoForm = ({
                     loadingText={loadingText}
                     resultText={resultText}
                     data={result.data}
-                    pristine={result.pristine}
+                    loading={result.loading}
                     resolved={result.resolved}
                 />
             </div>
