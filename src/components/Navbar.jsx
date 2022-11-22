@@ -5,7 +5,7 @@ export const Navbar = () => {
     return (
         <div className="navbar bg-neutral text-neutral-content">
             <div className="flex-1">
-                <a className="btn btn-ghost normal-case text-xl">AES</a>
+                <Link to='/encrypt' className="btn btn-ghost normal-case text-xl">AES</Link>
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal">
