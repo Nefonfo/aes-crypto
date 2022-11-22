@@ -1,9 +1,18 @@
 import {useState} from 'react'
+import PropTypes from 'prop-types'
+
 import {Mockup, Error} from "./index.js";
 
 
 
-export const CryptoForm = ({title, inputTitle1, inputTitle2, bashText, loadingText, resultText, handleSubmit}) => {
+export const CryptoForm = ({
+                               title,
+                               inputTitle1,
+                               inputTitle2,
+                               bashText,
+                               loadingText,
+                               resultText,
+                               handleSubmit}) => {
 
     const [error, setError] = useState('');
     const [input1, setInput1] = useState('')
@@ -77,3 +86,14 @@ export const CryptoForm = ({title, inputTitle1, inputTitle2, bashText, loadingTe
         </main>
     )
 }
+
+CryptoForm.propTypes = {
+    title: PropTypes.string.isRequired,
+    inputTitle1: PropTypes.string.isRequired,
+    inputTitle2: PropTypes.string.isRequired,
+    bashText: PropTypes.string.isRequired,
+    loadingText: PropTypes.string.isRequired,
+    resultText: PropTypes.string.isRequired,
+    handleSubmit: PropTypes.func.isRequired
+}
+

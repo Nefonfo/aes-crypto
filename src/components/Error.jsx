@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 export const Error = ({text}) => {
     return (
         <div className="alert alert-error shadow-lg">
@@ -12,3 +14,7 @@ export const Error = ({text}) => {
         </div>
     );
 };
+
+Error.propTypes = {
+    text: PropTypes.string.isRequired
+}
